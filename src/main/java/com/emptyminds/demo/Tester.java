@@ -51,7 +51,7 @@ public class Tester {
 			
 			System.out.println(routebuilder.getRouteCollection().toString());
 			ctx.start();
-			Thread.sleep(20000);
+			Thread.sleep(10000);
 			ctx.stop();
 		} catch (Exception e) {
 			e.printStackTrace();

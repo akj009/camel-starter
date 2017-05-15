@@ -24,8 +24,8 @@ public class RouteBuilderExperiment {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
+	
 	static synchronized void invokeRoute(String routeName) throws Exception {
 		ctx.startRoute(routeName);
 		Thread.sleep(1000);
@@ -55,21 +55,6 @@ class RestRouteBuilder extends RouteBuilder {
 				.process(arg0 -> System.out.println("EXCHANGE: " + arg0.getIn().getBody(String.class)));	
 			}
 		}		
-	}
-}
-
-class DirectRestRouteBuilder extends RouteBuilder {
-	@Override
-	public void configure() throws Exception {
-		from("direct:send").autoStartup(false)
-			.routeId("send_sms")
-			.to("http://localhost:8089/mockcarrier/otvs_send_sms")
-			.process(arg0 -> System.out.println("EXCHANGE: " + arg0.getIn().getBody(String.class)));
-		
-		from("direct:renewal").autoStartup(false)
-			.routeId("renewal")
-			.to("http://localhost:8089/mockcarrier/otvs_renewal_success")
-			.process(arg0 -> System.out.println("EXCHANGE: " + arg0.getIn().getBody(String.class)));
 	}
 }
 
